@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>商品发布</title>
+    {{include '../head'}}
+    <link rel="stylesheet" href="/plugin/ssi-uploader/ssi-uploader/styles/ssi-uploader.css">
+    <script src="/plugin/ssi-uploader/ssi-uploader/js/ssi-uploader.js"></script>
+</head>
+
+<body>
+    {{include '../nav'}}
+    <div class="container" style="padding-top: 80px">
+        <div>
+            <input type="file" multiple id="ssi-upload" name="preview" />
+        </div>
+        <form id="issue-form" class="has-success" style="padding: 20px 0">
+            <div class="form-group">
+                <label for="name">商品名</label>
+                <input type="text" class="form-control input-lg" id="name" name="name" placeholder="请输入商品名称">
+            </div>
+            <div class="form-group">
+                <label for="material">材质</label>
+                <input type="text" class="form-control input-lg" id="material" name="material" placeholder="请输入商品的材质">
+            </div>
+            <div class="form-group">
+                <label for="price">价格</label>
+                <input type="text" class="form-control input-lg" id="price" name="price" placeholder="请输入商品价格">
+            </div>
+            <div class="form-group">
+                <label>商品描述</label>
+                <textarea class="form-control input-lg" rows="3" name="introduction"></textarea>
+            </div>
+            <button type="submit" class="btn btn-info" style="width: 92px">发布</button>
+        </form>
+    </div>
+</body>
+
+<script>
+    $('#ssi-upload').ssi_uploader({
+        url: '/users/issue',
+        locale: 'zh_CN',
+        maxNumberOfFiles: 1,
+        beforeUpload: function () {
+            this.data = serialize($('#issue-form'));
+        },
+        onEachUpload: function (res) {
+            alert(res.responseMsg.msg);
+        },
+        errorHandler: function (err) {
+            console.dir(err);
+        }
+    });
+
+    // 隐藏上传按钮
+    $('.ssi-button').click(function(){
+        $('#ssi-uploadBtn').hide();
+    });
+
+    $('#issue-form').submit(function (e) {
+        e.preventDefault();
+        $('#ssi-uploadBtn').trigger('click');
+        // Ssi_upload.uploadFiles();
+    });
+
+
+    var serialize = function (form) {
+        var $form = (typeof (form) == "string" ? $("#" + form) : form);
+        var result = {};
+        $form.find('*[name]').each(function (index, item) {
+            var key = $(this).attr('name');
+            var value = $(this).val();
+            result[key] = value;
+        });
+        return result;
+    };
+</script>
+
+</html>

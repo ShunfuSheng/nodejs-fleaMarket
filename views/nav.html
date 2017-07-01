@@ -1,0 +1,40 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">跳蚤市场</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <!--登录状态-->
+      {{if user}}
+      <ul class="nav navbar-nav">
+        <li><a href="/">首页</a></li>
+        <!--<li><a href="/">我的商品</a></li>-->
+        <li><a href="/users/issue">发布商品</a></li>
+        <li><a href="/users/history">交易记录</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="javascript:;">你好：<span>{{user}}</span></a></li>
+        <li><a href="/login/logout">退出</a></li>
+      </ul>
+      {{else}}
+      <!--非登录状态-->
+      <ul class="nav navbar-nav">
+        <li><a href="/">首页</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/login/login">登录</a></li>
+        <li><a href="/login/register">注册</a></li>
+      </ul>
+      {{/if}}
+    </div>
+    
+  </div>
+</nav>

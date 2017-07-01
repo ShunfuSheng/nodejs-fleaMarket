@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>商品详情</title>
+    {{include '../head'}}
+    <style>
+        img {
+            height: 230px;
+            float: left;
+            margin-right: 30px;
+        }
+        p {
+            font-size: 21px;
+        }
+    </style>
+</head>
+
+<body>
+    {{include '../nav'}}
+    <div class="container" style="padding-top: 100px;">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">商品详情</h3>
+            </div>
+            <div class="panel-body">
+                <img src="/images/{{cInfo.image}}" alt="">
+                <p>商品名：{{cInfo.name}}</p>
+                <p>商品材料：{{cInfo.material}}</p>
+                <p>商品价格：{{cInfo.price}}</p>
+                <p>产品介绍：{{cInfo.introduction}}</p>
+                <button id="patch" data-id="{{cInfo.id}}" class="btn btn-success col-sm-1">购买</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    $('#patch').click(function(){
+        {{if user}}
+        $.ajax({
+            url: '/users/trade',
+            type: 'post',
+            data: {cid: $(this).data('id')},
+            dataType: 'json',
+            success: function(res) {
+                alert(res.msg);
+                location.href = '/';
+            }
+        });
+        {{else}}
+        alert('请先登录！');
+        return false;
+        {{/if}}
+    });
+</script>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>examples</title>
+    <link rel="stylesheet" href="ssi-uploader/styles/ssi-uploader.css"/>
+    <link rel="stylesheet" href="bower_components\ssi-modal\dist\ssi-modal\styles\ssi-modal.css"/>
+</head>
+<body>
+
+
+<table class="ie table">
+    <tr>
+        <td>Basic:
+
+            <input type="file" name="ssi-upload" multiple id="ssi-upload"/>
+        </td>
+    </tr>
+    <tr>
+        <td>No preview:
+
+            <input type="file" name="ssi-upload2" multiple id="ssi-upload2"/>
+        </td>
+    </tr>
+    <tr>
+        <td>Not drop zone:
+
+            <input type="file" name="ssi-upload3" multiple id="ssi-upload3"/>
+        </td>
+    </tr>
+    <tr>
+        <td>Allowed:
+            <input type="file" name="ssi-upload4" multiple id="ssi-upload4"/>
+        </td>
+    </tr>
+
+</table>
+<script src="https://code.jquery.com/jquery-1.12.3.min.js"
+        integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
+<script src="ssi-uploader/js/ssi-uploader.js"></script>
+<script src="bower_components\ssi-modal\dist\ssi-modal\js\ssi-modal.js"></script>
+<script>
+    var notifyOptions = {
+        iconButtons: {
+            className: 'fa fa-question about',
+            method: function (e, modal) {
+                ssi_modal.closeAll('notify');
+                var btn = $(this).addClass('disabled');
+                ssi_modal.dialog({
+                    onClose: function () {
+                        btn.removeClass('disabled')
+                    },
+                    onShow: function () {
+                    },
+                    okBtn: {className: 'btn btn-primary btn-sm'},
+                    title: 'ssi-modal',
+                    content: 'ssi-modal is an open source modal window plugin that only depends on jquery. It has many options and it\'s super flexible, maybe the most flexible modal out there... For more details click <a class="sss" href="http://ssbeefeater.github.io/#ssi-modal" target="_blank">here</a>',
+                    sizeClass: 'small',
+                    animation: true
+                });
+            }
+        }
+    };
+    $('#ssi-upload').ssi_uploader({
+        url: 'uploadAction.php',
+        maxFileSize: 6,
+        allowed: ['jpg', 'gif', 'txt', 'png', 'pdf']
+        ,onEachUpload:function(file){console.log(file)}
+    });
+    $('#ssi-upload2').ssi_uploader({url: 'uploadAction.php', preview: false});
+    $('#ssi-upload3').ssi_uploader({url: 'uploadAction.php', dropZone: false});
+    $('#ssi-upload4').ssi_uploader({url: 'uplodadAction.php', dropZone: false, allowed: ["pdf"]});
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+
+{
+  "name": "ssi-modal",
+  "description": "ssi-modal is the most flexible and powerful modal window.",
+  "version": "1.0.0",
+  "main": [
+    "dist/ssi-modal/js/ssi-modal.min.js",
+    "dist/ssi-modal/styles/ssi-modal.css"
+  ],
+  "dependencies": {
+    "jquery":">1.9.x"
+  },
+  "keywords": [
+    "modal",
+    "jquery",
+    "ssi-modal"
+  ],
+  "authors": [
+    "ssbeefeater <ssbeefeater@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    ".npmignore",
+    ".gitignore",
+    "/src",
+    "package.json",
+    "gulpfile.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ssbeefeater/ssi-modal.git"
+  },
+  "homepage":"http://ssbeefeater.github.io/"
+}

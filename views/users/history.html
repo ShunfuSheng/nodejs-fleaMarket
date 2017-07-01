@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>交易记录</title>
+    {{include '../head'}}
+</head>
+
+<body>
+    {{include '../nav'}}
+    <div class="container" style="padding-top: 80px">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>商品名称</th>
+                    <th>商品材料</th>
+                    <th>购买时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{each purchaseList}}
+                <tr>
+                    <td>{{$index+1}}</td>
+                    <td>{{$value.cid.name}}</td>
+                    <td>{{$value.cid.material}}</td>
+                    <td>{{$value.getDate()}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
