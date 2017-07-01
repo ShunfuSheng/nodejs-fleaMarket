@@ -8,11 +8,13 @@
 
 ### 项目运行
 ```
-npm i express-genarator -g
+npm install express-generator -g
+npm install nodemon -g
 npm install
 ## 类unix环境下使用以下命令启动项目
 DEBUG=flea-market npm start
 ## windows环境下使用以下命令启动项目
+set DEBUG=flea-market & npm start
 ```
 
 ### 项目说明
